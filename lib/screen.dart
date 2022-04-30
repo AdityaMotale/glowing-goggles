@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:demo/scratch_card.dart';
 import 'package:flutter/material.dart';
 import 'package:scratcher/scratcher.dart';
 
@@ -17,19 +18,30 @@ class _ScreenState extends State<Screen> {
       body: Container(
         color: Colors.black26,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 100),
-        child: Scratcher(
+        child: ScratchCard(
           color: Colors.red,
-          brushSize: 35,
           threshold: 40,
-          onChange: (value) => log("$value%  Scratched"),
-          onThreshold: () => log("Reached Threshold..!!"),
           child: Container(
-            height: 300,
             width: 300,
-            color: Colors.green,
+            height: 300,
+            color: Colors.yellowAccent,
           ),
+          image: Image.network('src'),
         ),
       ),
     );
   }
 }
+
+// Scratcher(
+//           color: Colors.red,
+//           brushSize: 35,
+//           threshold: 40,
+//           onChange: (value) => log("$value%  Scratched"),
+//           onThreshold: () => log("Reached Threshold..!!"),
+//           child: Container(
+//             height: 300,
+//             width: 300,
+//             color: Colors.green,
+//           ),
+//         )
