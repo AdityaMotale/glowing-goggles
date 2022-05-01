@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:demo/card_painter.dart';
+import 'package:demo/scratchy/painter.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -25,8 +25,8 @@ double _accuracyVal(Accuracy accuracy) {
   }
 }
 
-class ScratchCard extends StatefulWidget {
-  const ScratchCard({
+class Scratchy extends StatefulWidget {
+  const Scratchy({
     Key? key,
     required this.child,
     this.accuracy = Accuracy.high,
@@ -59,10 +59,10 @@ class ScratchCard extends StatefulWidget {
   final VoidCallback? onEnd;
 
   @override
-  State<ScratchCard> createState() => _ScratchCardState();
+  State<Scratchy> createState() => _ScratchyState();
 }
 
-class _ScratchCardState extends State<ScratchCard> {
+class _ScratchyState extends State<Scratchy> {
   late Future<ui.Image?> _loadImg;
   Offset? _prevPose;
 
@@ -170,7 +170,7 @@ class _ScratchCardState extends State<ScratchCard> {
       Uint8List bytes, {
       int? cacheWidth,
       int? cacheHeight,
-      bool? allowUpScaling,
+      bool? allowUpscaling,
     }) async {
       return ui.instantiateImageCodec(bytes);
     }).addListener(ImageStreamListener((ImageInfo image, _) {
