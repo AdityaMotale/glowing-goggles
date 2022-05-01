@@ -1,4 +1,5 @@
 import 'package:demo/controller/dice.ctrl.dart';
+import 'package:demo/design/utils/assets.styles.dart';
 import 'package:demo/design/utils/colors.styles.dart';
 import 'package:demo/design/utils/text_styles.styles.dart';
 import 'package:demo/views/reward.view.dart';
@@ -17,10 +18,10 @@ class HomeView extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 30.w,
-            vertical: 40.h,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
                 'Roll The Dice ✌️',
@@ -30,7 +31,7 @@ class HomeView extends StatelessWidget {
                 height: 20.h,
               ),
               Text(
-                'Shake your phone or Press the Start button to roll the dices and start playing',
+                'Press the Start button to roll the dices and start playing',
                 style: DesignText.subHeading(color: DesignColors.primary),
                 textAlign: TextAlign.center,
               ),
@@ -39,10 +40,7 @@ class HomeView extends StatelessWidget {
               ),
               Container(
                 width: 325.w,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                  vertical: 20.h,
-                ),
+                height: 200.h,
                 decoration: const BoxDecoration(
                   color: DesignColors.background,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -70,13 +68,17 @@ class HomeView extends StatelessWidget {
                     )),
               ),
               SizedBox(
-                height: 200.h,
+                height: 150.h,
               ),
               InkWell(
                 onTap: () {
+                  ctrl.player.play(
+                    DesignAssets.diceAudio,
+                  );
                   ctrl.play();
                   Future.delayed(const Duration(seconds: 2)).then((_) {
                     ctrl.calcScore();
+                    ctrl.player.clearAll();
                     Get.to(() => RewardView());
                   });
                 },
@@ -96,7 +98,10 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
             ],
           ),
         ),

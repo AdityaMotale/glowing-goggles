@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:demo/design/utils/assets.styles.dart';
@@ -24,7 +22,6 @@ class DiceController extends GetxController {
   }
 
   Future<void> play() async {
-    start();
     for (int i = 0; i < 20; i++) {
       Future.delayed(Duration(milliseconds: i * 100), () {
         var r = Random();
@@ -34,15 +31,6 @@ class DiceController extends GetxController {
         dice2.value = (DesignAssets.dicePrefix) + r2.toString() + '.png';
       });
     }
-  }
-
-  Future<void> start() async {
-    player.play(
-      DesignAssets.diceAudio,
-    );
-    await Future.delayed(const Duration(milliseconds: 1000), () {
-      player.clearAll();
-    });
   }
 
   void calcScore() {

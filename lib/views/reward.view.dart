@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:demo/controller/dice.ctrl.dart';
 import 'package:demo/design/utils/assets.styles.dart';
 import 'package:demo/design/utils/colors.styles.dart';
@@ -22,10 +20,10 @@ class RewardView extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 30.w,
-            vertical: 40.h,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
                 'Congratulations 🎉',
@@ -51,15 +49,12 @@ class RewardView extends StatelessWidget {
                     "assets/gift.png",
                     fit: BoxFit.fill,
                   ),
-                  onChange: (val) => {
-                    if (val > 20)
-                      {
-                        ctrl.isScratched.value = true,
-                      }
-                    else
-                      {
-                        ctrl.isScratched.value = false,
-                      }
+                  onChange: (val) {
+                    if (val > 20) {
+                      ctrl.isScratched.value = true;
+                    } else {
+                      ctrl.isScratched.value = false;
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -92,7 +87,7 @@ class RewardView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 40.h,
               ),
               Text(
                 'Scratch the above card by swiping on it and get your reward',
@@ -100,7 +95,7 @@ class RewardView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 40.h,
+                height: 30.h,
               ),
               Obx(
                 () => ctrl.isScratched.value
@@ -126,8 +121,13 @@ class RewardView extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Container(),
-              )
+                    : SizedBox(
+                        height: 55.h,
+                      ),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
             ],
           ),
         ),
